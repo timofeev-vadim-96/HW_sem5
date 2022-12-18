@@ -1,24 +1,29 @@
-﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами.
-//  Напишите программу, которая покажет количество чётных чисел в массиве.
-// [345, 897, 568, 234] -> 2
-int [] array = new int [9];
-void FillArray (int [] array1)
+﻿// Задача 38: Задайте массив вещественных чисел.
+// Найдите разницу между максимальным и минимальным элементов массива.
+
+// [3 7 22 2 78] -> 76
+double [] array = new double [4];
+void FillArray (double [] array1)
 {
     for (int i = 0; i < array1.Length; i++)
     {
-        array[i] = new Random().Next(100,1000);
+        array[i] = new Random().NextDouble();
+        array[i] = Math.Round (array[i], 3);
     }
 }
 FillArray(array);
 System.Console.WriteLine($"Array: [{String.Join(", ", array)}]");
-
-void CalculateEvenNumbers (int [] array2)
+System.Console.WriteLine();
+void FindMaxAndMin (double [] array2)
 {
-    int count = 0;
-    foreach (var item in array2)
+    double max = array2[0];
+    double min = array2[0];
+    for (int i = 1; i < array2.Length; i++)
     {
-        if (item%2 == 0) count++;
+        if (array[i] > max) max = array [i];
+        if (array[i] < min) min = array [i];
     }
-    System.Console.WriteLine($"Количество четных чисел в массиве = {count}");
+    double dif = max - min;
+    System.Console.WriteLine($"Разница между макс.эл. {max} и мин.эл. {min} = {dif}");
 }
-CalculateEvenNumbers(array);
+FindMaxAndMin(array);
